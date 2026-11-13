@@ -3,27 +3,80 @@
 @tailwind utilities;
 
 @layer base {
-  html { scroll-behavior: smooth; }
-  body { @apply bg-gray-950 text-gray-100 font-sans antialiased; }
-  .light body { @apply bg-gray-50 text-gray-900; }
+  html {
+    scroll-behavior: smooth;
+    background-color: #0a0f1a;
+    color: #f3f4f6;
+  }
+  html.light {
+    background-color: #f9fafb;
+    color: #111827;
+  }
+  body {
+    @apply font-sans antialiased;
+  }
 }
 
-@layer utilities {
-  .section-pad { @apply py-20 px-4 sm:px-8 max-w-6xl mx-auto; }
-  .card { @apply rounded-2xl border border-gray-800 bg-gray-900 p-6 transition-all duration-300 hover:border-teal-500/60 hover:shadow-lg hover:shadow-teal-500/10; }
-  .dark .card { @apply bg-gray-900 border-gray-800; }
-  .light .card { @apply bg-white border-gray-200 shadow-sm; }
-  .badge { @apply text-xs font-medium px-2.5 py-1 rounded-full bg-teal-500/10 text-teal-400 border border-teal-500/20; }
-  .btn-primary { @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-teal-500 text-gray-950 font-semibold text-sm hover:bg-teal-400 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 focus:ring-offset-gray-950; }
-  .btn-outline { @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-teal-500 text-teal-400 font-semibold text-sm hover:bg-teal-500/10 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 focus:ring-offset-gray-950; }
-  .section-title { @apply text-3xl font-bold mb-2; }
-  .section-sub { @apply text-teal-400 font-semibold text-sm uppercase tracking-widest mb-10; }
+@layer components {
+  .section-pad {
+    @apply py-20 px-4 sm:px-8 max-w-6xl mx-auto;
+  }
+  .card {
+    @apply rounded-2xl border p-6 transition-all duration-300;
+    background-color: #111827;
+    border-color: #1f2937;
+  }
+  .card:hover {
+    border-color: rgba(20, 184, 166, 0.5);
+    box-shadow: 0 10px 30px rgba(20, 184, 166, 0.08);
+  }
+  html.light .card {
+    background-color: #ffffff;
+    border-color: #e5e7eb;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .badge {
+    @apply text-xs font-medium px-2.5 py-1 rounded-full;
+    background-color: rgba(20, 184, 166, 0.1);
+    color: #2dd4bf;
+    border: 1px solid rgba(20, 184, 166, 0.2);
+  }
+  html.light .badge {
+    color: #0d9488;
+  }
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-teal-400;
+    background-color: #14b8a6;
+    color: #0a0f1a;
+  }
+  .btn-primary:hover {
+    background-color: #2dd4bf;
+  }
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-teal-400;
+    border: 1px solid #14b8a6;
+    color: #2dd4bf;
+  }
+  .btn-outline:hover {
+    background-color: rgba(20, 184, 166, 0.1);
+  }
+  .section-title {
+    @apply text-3xl font-bold mb-2 text-white;
+  }
+  html.light .section-title {
+    color: #111827;
+  }
+  .section-sub {
+    @apply font-semibold text-sm uppercase tracking-widest mb-10;
+    color: #14b8a6;
+  }
 }
 
 /* Scroll progress bar */
 #scroll-progress {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   height: 3px;
   background: linear-gradient(90deg, #14b8a6, #22d3ee);
   z-index: 9999;
@@ -31,15 +84,41 @@
 }
 
 /* Intersection observer fade/slide */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* Typing cursor */
-.typing-cursor { border-right: 2px solid #14b8a6; animation: blink 0.75s step-end infinite; }
+.typing-cursor {
+  border-right: 2px solid #14b8a6;
+  animation: blink 0.75s step-end infinite;
+}
 
-/* Light mode overrides */
-html.light { background-color: #f9fafb; color: #111827; }
-html.light .card { background-color: #ffffff; border-color: #e5e7eb; }
-html.light .badge { background-color: rgba(20,184,166,0.1); color: #0d9488; }
-html.light nav { background-color: rgba(249,250,251,0.9); border-color: #e5e7eb; }
-html.light .section-sub { color: #0d9488; }
+@keyframes blink {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: #14b8a6; }
+}
+
+/* Light mode text overrides */
+html.light .text-gray-400 {
+  color: #4b5563;
+}
+html.light .text-gray-300 {
+  color: #374151;
+}
+html.light .text-white {
+  color: #111827;
+}
+html.light nav {
+  background-color: rgba(249, 250, 251, 0.95) !important;
+  border-color: #e5e7eb;
+}
+html.light .text-gray-500 {
+  color: #6b7280;
+}

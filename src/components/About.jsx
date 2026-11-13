@@ -7,7 +7,7 @@ export default function About() {
     <section id="about" aria-labelledby="about-heading" className="section-pad">
       <div ref={ref} className="reveal">
         <p className="section-sub">Who I Am</p>
-        <h2 id="about-heading" className="section-title text-white dark:text-white">About Me</h2>
+        <h2 id="about-heading" className="section-title">About Me</h2>
 
         <div className="grid md:grid-cols-2 gap-10 mt-8 items-start">
           <p className="text-gray-400 leading-relaxed text-base">{about.bio}</p>

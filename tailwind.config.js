@@ -5,6 +5,11 @@ export default {
   theme: {
     extend: {
       fontFamily: { sans: ['Inter', 'sans-serif'] },
+      colors: {
+        gray: {
+          950: '#0a0f1a',
+        },
+      },
       animation: {
         'fade-in': 'fadeIn 0.6s ease forwards',
         'slide-up': 'slideUp 0.6s ease forwards',
